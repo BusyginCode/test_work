@@ -1,0 +1,22 @@
+/*
+* main styles
+*/
+
+.loader {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -130px;
+  margin-top: -150px;
+}
+
+.container {
+  width: 100%;
+}
+.images_container {
+  width: 300px;
+  margin: 0 auto;
+}
+.image_container:hover {
+  opacity: 0.5;
+}
