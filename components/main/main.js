@@ -68,10 +68,10 @@ export default class Main extends React.Component {
     } else {
       --this.state.step
     }
-    this.state.photos = null
     this.componentDidMount()
     this.setState({
-      step: this.state.step
+      step: this.state.step,
+      photos: null
     })
   }
 
