@@ -1,5 +1,5 @@
 import { ajax, documentClick } from 'utils'
-import Modal from 'react-modal'
+import { MyModal, Navigation } from 'components'
 
 export default class Main extends React.Component {
 
@@ -76,22 +76,9 @@ export default class Main extends React.Component {
   }
 
   render() {
-    const modalStyles = {
-      content: {
-        textAlign: 'center'
-      }
-    }
     return(
       <div className="container">
-      {
-        this.state.openPhoto ?
-          <Modal isOpen={!!this.state.openPhoto} style={ modalStyles }>
-            <img src={ this.state.openPhoto.url } />
-            <h5>{ this.state.openPhoto.description }</h5>
-            <h3>Click anywhere to close</h3>
-          </Modal>
-        : null
-      }
+      <MyModal openPhoto={ this.state.openPhoto }/>
       {
         this.state.photos ?
           <div className="images_container">
@@ -111,24 +98,12 @@ export default class Main extends React.Component {
                 )
               })
             }
-            {
-              // check min step
-              this.state.step > 1 ?
-              <button className="btn btn-default" onClick={ this.changeStep.bind(this, false) }>Prev. page</button>
-            : null
-            }
-            {
-              // check max step
-              this.state.step < this.state.totalPages ?
-                <button 
-                  className="btn btn-primary" 
-                  onClick={ this.changeStep.bind(this, true) } 
-                  style={{ marginLeft: 10 + 'px' }}
-                >
-                  Next page
-                </button>
-              : null
-            }
+            <Navigation 
+              totalPages={ this.state.totalPages }
+              step={ this.state.step } 
+              changeStepPlus={ this.changeStep.bind(this, true) } 
+              changeStepMinus={ this.changeStep.bind(this, false) } 
+            />
           </div>
         :
         <div className="loader">
